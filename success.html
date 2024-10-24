@@ -1,0 +1,170 @@
+<!--sucess-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful - Kisiki Capital</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --fire-50: #fdf8ed;
+            --fire-100: #faebcb;
+            --fire-200: #f4d593;
+            --fire-300: #efb95a;
+            --fire-400: #ea9d2d;
+            --fire-500: #e3801d;
+            --fire-600: #c95f16;
+            --fire-700: #a74216;
+            --fire-800: #883418;
+            --fire-900: #702c17;
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.4; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+        }
+        
+        @keyframes checkmark {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        .checkmark-animation {
+            animation: checkmark 0.5s ease-in-out forwards;
+        }
+
+        .fade-in {
+            animation: fade-in 0.6s ease-out forwards;
+        }
+
+        .circle-container {
+            position: relative;
+            width: 130px;
+            height: 130px;
+        }
+        
+        .outer-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 130px;
+            height: 130px;
+            background-color: var(--fire-100);
+        }
+        
+        .middle-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background-color: var(--fire-200);
+        }
+        
+        .inner-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background-color: var(--fire-500);
+        }
+
+        .fire-text {
+            color: var(--fire-600);
+        }
+
+        .fire-bg {
+            background-color: var(--fire-50);
+        }
+
+        .fire-button {
+            background-color: var(--fire-500);
+            transition: background-color 0.2s;
+        }
+
+        .fire-button:hover {
+            background-color: var(--fire-600);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-md">
+        <div class="bg-white rounded-3xl shadow-lg p-6">
+            <!-- Header -->
+            <div class="flex items-center mb-8 fade-in">
+                <a href="index.html" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </a>
+                <h1 class="text-xl font-semibold ml-4 fire-text">Registration Confirmation</h1>
+            </div>
+
+            <!-- Success Icon -->
+            <div class="flex justify-center mb-8">
+                <div class="circle-container">
+                    <div class="outer-circle rounded-full pulse-animation"></div>
+                    <div class="middle-circle rounded-full"></div>
+                    <div class="inner-circle rounded-full flex items-center justify-center">
+                        <svg class="w-10 h-10 text-white checkmark-animation" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success Message -->
+            <div class="text-center mb-8 fade-in" style="animation-delay: 0.2s">
+                <h2 class="text-xl font-semibold mb-2" style="color: var(--fire-500)">Registration Successful!</h2>
+                <p class="text-gray-500 text-sm mb-1">Thank you for registering for the Kisiki Capital Seminar.</p>
+                <p class="text-gray-500 text-sm">We've sent the confirmation details to your email.</p>
+            </div>
+
+            <!-- Seminar Details -->
+            <div class="rounded-2xl p-6 fade-in fire-bg" style="animation-delay: 0.4s">
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span class="fire-text">Date</span>
+                        <span class="text-gray-700">October 30, 2024</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="fire-text">Time</span>
+                        <span class="text-gray-700">9:00 AM - 4:00 PM</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="fire-text">Venue</span>
+                        <span class="text-gray-700">Kisiki Capital Conference Hall</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to Home Button -->
+            <div class="mt-8 fade-in" style="animation-delay: 0.6s">
+                <a href="index.html"
+                    class="block w-full fire-button text-white text-center font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200">
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
