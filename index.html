@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        /* ... (keeping your existing styles unchanged) ... */
          :root {
             --fire-50: #fdf8ed;
             --fire-100: #faebcb;
@@ -35,7 +35,64 @@
         .fade-in {
             animation: fade-in 0.6s ease-out forwards;
         }
+  /* Loading overlay */
+  .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
 
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        /* Loader bars */
+        .loader {
+            width: 8px;
+            height: 40px;
+            border-radius: 4px;
+            display: block;
+            background-color: currentColor;
+            margin: 20px auto;
+            position: relative;
+            color: var(--fire-500);
+            animation: animloader 0.3s 0.3s linear infinite alternate;
+        }
+
+        .loader::after,
+        .loader::before {
+            content: '';
+            width: 8px;
+            height: 40px;
+            border-radius: 4px;
+            background: currentColor;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 20px;
+            animation: animloader 0.3s 0.45s linear infinite alternate;
+        }
+
+        .loader::before {
+            left: -20px;
+            animation-delay: 0s;
+        }
+
+        @keyframes animloader {
+            0% {
+                height: 48px;
+            }
+            100% {
+                height: 4px;
+            }
+        }
         .fire-text { color: var(--fire-500); }
         .fire-bg { background-color: var(--fire-50); }
         .fire-input:focus {
@@ -52,22 +109,24 @@
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen">
+    <div class="loading-overlay">
+        <div class="loader"></div>
+    </div>
     <div class="wave-bg min-h-screen flex flex-col items-center justify-center p-4">
-
         <div class="w-full max-w-md">
             <div class="bg-white rounded-3xl shadow-lg p-6">
                 <!-- Header -->
                 <div class="text-center mb-8 fade-in">
                     <h1 class="text-2xl font-bold fire-text">FOREX TRADING SEMINAR</h1>
-                    <p class="text-gray-500 mt-2">Come and Learn How to make Money online through Forex Trading</p>
+                    <p class="text-gray-500 mt-4">Welcome to Kisiki Capital! Please fill out this form to register for our upcoming Forex Trading Seminar.</p>
                 </div>
 
                 <!-- Registration Form -->
-                <form action="success.html" class="space-y-6 fade-in" style="animation-delay: 0.2s">
+                <form id="registrationForm" class="space-y-6 fade-in" style="animation-delay: 0.2s" action="https://docs.google.com/forms/d/e/1FAIpQLScpXvIfNGihFwClmTPMoE6xo6DOk1M0XM6oRFAvp0G3sIqb8g/formResponse" method="POST" target="hidden_iframe">
                     <!-- Name -->
                     <div>
                         <label class="block text-sm font-medium fire-text mb-2" for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required
+                        <input type="text" id="name" name="Name" required
                             class="w-full px-4 py-3 rounded-xl border fire-input focus:outline-none"
                             placeholder="Enter your full name">
                     </div>
@@ -75,7 +134,7 @@
                     <!-- Email -->
                     <div>
                         <label class="block text-sm font-medium fire-text mb-2" for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required
+                        <input type="email" id="email" name="Email" required
                             class="w-full px-4 py-3 rounded-xl border fire-input focus:outline-none"
                             placeholder="Enter your email">
                     </div>
@@ -83,7 +142,7 @@
                     <!-- Phone -->
                     <div>
                         <label class="block text-sm font-medium fire-text mb-2" for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required
+                        <input type="tel" id="phone" name="Phone" required
                             class="w-full px-4 py-3 rounded-xl border fire-input focus:outline-none"
                             placeholder="Enter your phone number">
                     </div>
@@ -93,12 +152,12 @@
                         <label class="block text-sm font-medium fire-text mb-2">Gender</label>
                         <div class="flex space-x-4">
                             <label class="flex items-center">
-                                <input type="radio" name="gender" value="male" required
+                                <input type="radio" name="Gender" value="male" required
                                     class="form-radio text-fire-500 focus:ring-fire-500">
                                 <span class="ml-2 text-gray-700">Male</span>
                             </label>
                             <label class="flex items-center">
-                                <input type="radio" name="gender" value="female" required
+                                <input type="radio" name="Gender" value="female" required
                                     class="form-radio text-fire-500 focus:ring-fire-500">
                                 <span class="ml-2 text-gray-700">Female</span>
                             </label>
@@ -108,7 +167,7 @@
                     <!-- Trading Experience -->
                     <div>
                         <label class="block text-sm font-medium fire-text mb-2">Trading Experience</label>
-                        <select class="w-full px-4 py-3 rounded-xl border fire-input focus:outline-none" required>
+                        <select name="Experience" class="w-full px-4 py-3 rounded-xl border fire-input focus:outline-none" required>
                             <option value="">Select your experience level</option>
                             <option value="beginner">Beginner</option>
                             <option value="intermediate">Intermediate</option>
@@ -118,9 +177,11 @@
 
                     <!-- Submit Button -->
                     <button type="submit"
-                        class="w-full fire-button text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200">
-                        Register Now
-                    </button>
+                    class="w-full fire-button text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+                    id="submitButton">
+                    <span class="button-text">Register Now</span>
+                    <div class="submit-loader"></div>
+                </button>
 
                     <!-- Location and Contact -->
                     <div class="text-center text-sm text-gray-500 space-y-2 mt-6">
@@ -151,5 +212,57 @@
             </div>
         </div>
     </div>
+    
+    <script>
+        const form = document.getElementById('registrationForm');
+        const submitButton = document.getElementById('submitButton');
+        const loadingOverlay = document.querySelector('.loading-overlay');
+    
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+    
+            // Show loading states
+            loadingOverlay.classList.add('active');
+            submitButton.classList.add('loading');
+            submitButton.disabled = true;
+    
+            // Collect the form data
+            const formData = new FormData(form);
+            const keyValuePairs = [];
+            for (const pair of formData.entries()) {
+                keyValuePairs.push(encodeURIComponent(pair[0]) + "=" + encodeURIComponent(pair[1]));
+            }
+            const formDataString = keyValuePairs.join("&");
+    
+            try {
+                const response = await fetch(
+                    'https://script.google.com/macros/s/AKfycbxtVm9P2paxoNwaErEaUPtsW2yzgZaKeSuHJXrEFyX3FNzEeSx11QFN-TfQey5gRMrZ/exec',
+                    {
+                        method: 'POST',
+                        body: formDataString,
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+                        }
+                    }
+                );
+    
+                if (response.ok) {
+                    window.location.href = 'success.html';
+                } else {
+                    throw new Error("Failed to submit the form: " + response.statusText);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred: " + error.message);
+                // Reset loading states
+                loadingOverlay.classList.remove('active');
+                submitButton.classList.remove('loading');
+                submitButton.disabled = false;
+            }
+        });
+    </script>
+    
+
+    
 </body>
 </html>
